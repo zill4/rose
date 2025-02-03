@@ -1,7 +1,7 @@
 package lila.ui
 
 import chess.format.{ Fen, Uci }
-import chess.{ Board, Color, Square }
+import chess.{ Board, Color, Square, Game }
 
 import lila.core.pref.Pref
 import lila.ui.*
@@ -71,3 +71,5 @@ trait ChessHelper:
     }
 
   lazy val chessgroundBoard = wrap(cgBoard)
+
+  def render3DBoard(chess: chess.Game): Html

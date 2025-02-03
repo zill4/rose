@@ -1,7 +1,10 @@
 package views.game
 
 import lila.app.UiEnv.{ *, given }
+import views.html.base.*
 import lila.game.GameExt.perfType
+import chess.{ Game as ChessGame, Situation }
+import lila.ui.{ ChessHelper, ScalatagsTemplate }
 
 object side:
 
@@ -132,3 +135,12 @@ object side:
                 a(href := routes.Simul.show(sim.id))(sim.fullName)
       )
     }
+
+def test3dBoard(implicit ctx: Context) = 
+  views.html.base.layout.apply(
+    title = "3D Chess Test"
+  ) {
+    main(cls := "page-menu")(
+      ChessHelper.render3DBoard(ChessGame(Situation.default))
+    )
+  }

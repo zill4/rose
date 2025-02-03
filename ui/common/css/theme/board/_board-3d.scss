@@ -12,8 +12,33 @@ $td-inner-relative-percent: $td-inner-height-ratio / $td-outer-height-ratio * 10
   }
 }
 
-.main-board {
-  padding-bottom: $td-outer-height-percent;
+.main-board.is3d {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  background: #121212;
+
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    outline: none;
+  }
+
+  // Add perspective hints
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20%;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.2));
+    pointer-events: none;
+  }
 
   .cg-wrap {
     height: $td-inner-relative-percent;
@@ -110,4 +135,26 @@ $piece-files: (
   @include mq-at-least-col2 {
     bottom: #{28px - $resize-width} !important;
   }
+}
+
+.board-3d {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    perspective: 1000px;
+    
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        touch-action: none;
+    }
+    
+    .board-container {
+        transform-style: preserve-3d;
+        transition: transform 0.3s ease-in-out;
+    }
 }
